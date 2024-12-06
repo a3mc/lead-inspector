@@ -1,5 +1,5 @@
 [package]
-name = "lead_validator"
+name = "lead-inspector"
 version = "0.0.1"
 edition = "2021"
 
