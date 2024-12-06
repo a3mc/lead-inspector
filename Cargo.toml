@@ -1,0 +1,17 @@
+[package]
+name = "lead_validator"
+version = "0.0.1"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1.42", features = ["rt-multi-thread", "macros"] }
+anyhow = "1.0.94"
+serde = { version = "1.0.25", features = ["derive"] }
+serde_json = "1.0.133"
+clap = { version = "4.5.23", features = ["derive"] }
+solana-client = "2.1.4"
+solana-sdk = "2.1.4"
+chrono = "0.4.38"
+indicatif = "0.17"
+reqwest = { version = "0.12.9", features = ["json"] }
+colorized = "1.0.0"
