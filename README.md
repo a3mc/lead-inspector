@@ -62,9 +62,17 @@ The program provides the following details:
 ### Example Output
 
 ```text
-Using specified epoch: 250
-First absolute slot of epoch 250: 20000000
-Leader schedule for epoch 250 retrieved successfully.
+Using configured epoch: 703
+Validator GwHH8ciFhR8vejWCqmg8FWZUCNtubPY2esALvy5tBvji is assigned to 228 slots in epoch 703.
+Using average slot duration: 0.400 seconds
+[00:00:00] [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 4/228 (52s)
+[00:01:02] [███████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 44/228 (9m)                                                                
+----------------------------------------
+Block of slots: [303778624, 303778625, 303778626, 303778627] at approximately 2024-11-27 08:39:47.000 UTC
+Previous Slot 303778623 Leader: 5ikB9XZNVsjwKb6hHT3FS3So1Z1SrDvU5yaniWEQyDEG ##ON BAD SKIP LIST## (Latency: 1.262132, Rank: 641)
+Our Validator Slots 303778624 - 303778627: GwHH8ciFhR8vejWCqmg8FWZUCNtubPY2esALvy5tBvji
+Next Slot 303778628 Leader: CpuDNi3iVoHXbaT8gHpzKe6rqeBasoYjEKi21q7NRVJS
+Slot 303778625: no block produced (skipped?) or no leader info. Not produced by us.
 ```
 
 ## Development
