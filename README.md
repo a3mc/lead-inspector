@@ -1,14 +1,21 @@
+# Validator Leader Inspector
 
-# Solana Validator Leader Inspector
+Inspired by [slot-bandits](https://github.com/1000xsh/solana-slot-bandits)
 
-**Solana Validator Leader Inspector** is a Rust-based command-line tool designed to interact with the Solana blockchain. It provides insights into a validator's performance for a specified epoch or the current epoch, including the leader schedule, skipped leader slots, nearby leaders relative to the validator's assigned slots, and metrics such as prior leader latency and rank.
+A CLI tool written in Rust that provides detailed insights into a validator’s block production during a given epoch. It presents the leader schedule, identifies skipped leader slots, shows nearby leaders relative to the validator’s assigned slots, and summarizes metrics such as prior leader latency and ranking.
+
+## Purpose
+
+This tool offers clarity into observed slot skips, potential performance bottlenecks, and validator behavior under various conditions. Its structured, auditable implementation leverages reliable libraries, ensuring maintainability and ease of contribution.
 
 ## Features
 
-- Retrieve the current epoch and slot information.
-- Query the leader schedule for a specific epoch or the current epoch.
-- Validate Solana validator public keys.
-- Calculate the first absolute slot of any given epoch.
+- Retrieve the current epoch and slots information
+- Query the leader schedule for a specific epoch or the current epoch
+- Validate public keys
+- Calculate the first absolute slot of any given epoch
+- Check api.trillium.so/skip_blame for prior leader in list
+- Check app.vx.tools for prior leader average latency and current TVC rank
 
 ## Installation
 
@@ -28,13 +35,13 @@
 Run the program using the following command:
 
 ```bash
-cargo run -- --validator <pubkey> --epoch <epoch>
+cargo run -- --validator <validator_identity> --epoch <epoch_number>
 ```
 
 ### Parameters
 
-- `--validator <pubkey>` (required): The public key of the Solana validator you want to query.
-- `--epoch <epoch>` (optional): The epoch number to query. If not provided, the tool defaults to the current epoch.
+- `--validator <validator_identity>` The public validator identity address you want to query
+- `--epoch <epoch>` _(optional)_ The epoch number to query. If not provided, the tool defaults to the current epoch
 
 ### Examples
 
@@ -55,9 +62,13 @@ cargo run -- --validator B3aPj8cRWvBzkXxMRM2ZK8eqbG1DZW1mjt6eZgfebcYr --epoch 25
 The program provides the following details:
 
 1. **Current Epoch and Slot Information**:
-   - The current epoch and the first absolute slot of the queried epoch.
+   - The current epoch and the first absolute slot of the queried epoch
 2. **Leader Schedule**:
    - Retrieves the leader schedule for the specified epoch.
+3. **Skip Blame**:
+   - Checks trillium.so for skip blame as potential skip reason from prior leader
+4. **Latency and Rank**:
+   - Checks app.vx.tools for the prior leaders average latency and current TVC rank
 
 ### Example Output
 
@@ -107,6 +118,4 @@ Contributions are welcome! Feel free to submit issues or pull requests to improv
 
 This project is licensed under the MIT License. See the `LICENSE` file for details.
 
----
-
-For any questions or issues, please reach out to the project maintainer.
+For any questions or issues, please reach out to the project maintainer
