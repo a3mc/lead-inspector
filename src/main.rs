@@ -210,8 +210,14 @@ async fn main() -> Result<()> {
 
             if let Some(prev_val) = previous_validator {
                 // Fetch skip blame data
-                let response = reqwest::get("https://api.trillium.so/skip_blame/").await?.text().await?;
-                let json: Value = serde_json::from_str(&response)?;
+                let response = reqwest::get("https://api.trillium.so/skip_blame/")
+                    .await
+                    .context("Failed to fetch skip blame data")?
+                    .text()
+                    .await
+                    .context("Failed to read skip blame response text")?;
+                let json: Value = serde_json::from_str(&response)
+                    .context("Failed to parse skip blame response JSON")?;
         
                 // Parse bad validators list
                 if let Some(bad_validators) = json["data"]["validators"].as_array() {
@@ -227,9 +233,16 @@ async fn main() -> Result<()> {
                         let client = Client::new();
                         let payload = serde_json::json!({});
                         // Send POST to vx tools for validator latency stats calculation later
-                        let response = client.post(url).header("Content-Type", "application/json").json(&payload).send().await?.text().await?;
+                        let response = client.post(url).header("Content-Type", "application/json")
+                            .json(&payload)
+                            .send()
+                            .await?
+                            .text()
+                            .await
+                            .context("Failed to read latency response text")?;
                         // Make sure response is in JSON format
-                        let json: Value = serde_json::from_str(&response)?;
+                        let json: Value = serde_json::from_str(&response)
+                            .context("Failed to parse latency response JSON")?;
                         // Access the records array response
                         if let Some(records) = json["records"].as_array() {
                             // Find the bad nodes latency
