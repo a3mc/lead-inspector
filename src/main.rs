@@ -227,6 +227,11 @@ async fn main() -> Result<()> {
                             .as_str()
                             .map_or(false, |bad_pubkey| bad_pubkey == prev_val)
                     });
+                    let skip_blame_score = bad_validators.iter().find_map(|bad_validator| {
+                            bad_validator.get("skip_blame_score")
+                            .and_then(|value| value.as_i64())
+                            .map(|score| if score > 5 { score } else { 0 })
+                    });
         
                     if is_bad_validator {
                         let url = "https://api.vx.tools/epochs/leaderboard/voting";
